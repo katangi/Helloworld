@@ -19,7 +19,9 @@ namespace ShoppingMvc.Controllers
         }
      
         public ActionResult About()
+
         {
+            var ab = 0;
             ViewBag.Message = "my name is prerna";
 
             return View();
