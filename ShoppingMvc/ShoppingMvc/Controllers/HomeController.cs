@@ -29,6 +29,7 @@ namespace ShoppingMvc.Controllers
 
         public ActionResult Contact()
         {
+            var bc = 0;
             ViewBag.Message = "Your";
 
             return View();
