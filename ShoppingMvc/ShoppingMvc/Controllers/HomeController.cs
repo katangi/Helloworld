@@ -20,7 +20,7 @@ namespace ShoppingMvc.Controllers
      
         public ActionResult About()
         {
-            ViewBag.Message = "Your";
+            ViewBag.Message = "my name is prerna";
 
             return View();
         }
