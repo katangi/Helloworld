@@ -1,0 +1,104 @@
+﻿
+@model IEnumerable<ShoppingMvc.Models.Product>
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product</h2>
+
+<link href="~/Content/Style.css" rel="stylesheet" />
+@using (Html.BeginForm("ProductIndex", "Product", new { area = "Product" }, FormMethod.Post))
+{
+
+    <table>
+        <tr>
+            <td>
+                Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+
+            </td>
+            <td><button class="btn btn-small btn-success" style="color: white; padding-top: 0.5px; vertical-align: 10px;" type="submit" value="find">Search</button></td>
+        </tr>
+    </table>
+
+}
+
+<div class="container">
+ 
+
+
+    @foreach (var objproduct in Model)
+    {
+
+        <div class="col-lg-3">
+
+            <div>
+                <a href="@Url.Action("Buy", "Product", new { area = "Product",id=objproduct.Id })">
+                    <img src="/Image/@objproduct.Image" height="150" width="150" />
+                </a>
+                @*<div class="divImg"><img src="/Image/@objproduct.Image" height="150" width="150" /></div>*@
+            </div>
+
+            <address>
+                <div class="divIName">Name :@objproduct.Name</div>
+                <div class="divDesc">Description : @objproduct.Desc</div>
+                <div class="divCat">Category : @objproduct.Categoryname</div>
+                <div class="divPrice pri">Price : @objproduct.price</div>
+                <div style="color:red">Buy</div>
+                @*<button class="btn btn-success add-to-cart" style="color:white;" value="" onclick="Add()"> Buy</button>*@
+
+
+            </address>
+
+        </div>
+
+    }
+
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    function Add() {
+
+        debugger;
+        $.ajax({
+            url: '@Url.Action("Buy", "Product", new { area = "Product" })',
+            type: "Get",
+            data: { },
+            success: function (data) {
+                //$('#spnCart').html(data)
+            },
+            error: function (data) {
+
+
+            }
+        });
+    }
+   $(document).ready(function () {
+       $("#somevalue").autocomplete({
+           
+           source: function (request, response) {
+               debugger;
+               $.ajax({
+                   url: '@Url.Action("ProductSearch", "Product", new { area = "Product" })',
+                   type: "POST",
+                   dataType: "json",
+                   data: { Prefix: request.term },
+                   success: function (data) {
+                       response($.map(data, function (item) {
+                           return { label: item.Name, value: item.Name };
+                       }))
+
+                   }
+               })
+           },
+           messages: {
+               noResults: "", results: ""
+           }
+       });
+   })
+</script>
+

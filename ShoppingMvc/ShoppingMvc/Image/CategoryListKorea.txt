@@ -1,0 +1,100 @@
+5 BAG
+	145 Tote/Shoulder
+	146 Shopper/Hobo
+	147 Crossbody/Messenger Bag
+	148 Clutch/Pouch
+	149 Briefcase
+	150 Backpack
+	151 Luggage/Trunk
+	152 Hip Sack
+	153 Second Bag
+	154 Other Bags
+6 WALLET
+	155 Continental Wallet
+	156 Trifold Wallet
+	157 Bifold Wallet
+	158 Money Clip
+	159 Card Case
+	160 Coin Case
+	161 Diary/Agenda
+	162 Other Cases
+	234 Key Case
+7 ACC 
+	163 Ring
+	164 Bracelet/Anklet
+	165 Necklace/Pendant
+	166 Earrings
+	167 Set Jewellery 
+	168 Broach 
+	169 Gem
+	170 Tech Accs
+	171 Key Accs
+	172 Other Accs
+	235 Earcuff
+9 SHOES
+	194 Dress Shoes
+	195 Loafers/Driving Shoes
+	196 Heels/Wedges/Pumps
+	197 Flats
+	198 Sandals/Flip-Flops/Slippers
+	199 Sneakers
+	200 Slip-On 
+	201 Boots/Bootie
+	202 Other Shoes
+10 CLOTHES
+	173 Coat
+	174 Padded/Jumper 
+	175 Jacket/Windbreaker
+	176 Knitwear/Sweate
+	177 Hoodie
+	178 Cardigan
+	179 Vest
+	180 Shirt
+	181 Blouse 
+	182 Tee/Sleeveless/Top
+	183 Trousers/Pants
+	184 Shorts	
+	185 Jeans
+	186 Skirt
+	187 Dress
+	188 Suit
+	189 Suit Separates
+	190 Underwear/Sleepwear
+	191 Swimwear/Beachwear
+	192 Activewear
+	193 Other Clothing
+	233 Sweatshirt
+11 BEAUTY
+	203 Skin Care
+	204 Body Care
+	205 Hair Care
+	206 Make-Up
+	207 Cleansing/Sunblock
+	208 Hand Care/Foot Care
+	209 Fragrance/Candle
+	210 Other Cosmetics
+211 EYEWEARS
+	214 Sunglasses
+	215 Glasses
+	216 Other Eyewears
+212 WATCHES
+	217 Wrist Watch
+	218 Other Watches
+213 FASHION ITEMS
+	219 Hair Accs
+	220 Hat/Cap/Beanie
+	221 Scarf/Wraps
+	222 Necktie/Bowtie
+	223 Belt
+	224 Hankie/Pocket Square
+	225 Cufflinks/Tie Pin/Boutonniere
+	226 Gloves
+	227 Socks
+	228 Tights/Leggings
+	229 Umbrella--
+	230 Pen/Pencil--
+	231 Other items--
+	232 Phone Accs--
+	236 Bag Acc--
+ 
+	

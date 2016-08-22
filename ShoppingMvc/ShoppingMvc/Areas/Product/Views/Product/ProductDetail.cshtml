@@ -1,0 +1,308 @@
+﻿@model ShoppingMvc.Models.Product
+@{
+    ViewBag.Title = "ProductDetail";
+     Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>Product Details</h2>
+<link href="~/Scripts/notiflt.css" rel="stylesheet" />
+<script src="~/Scripts/notifIt.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="~/Scripts/jquery.elevatezoom.js"></script>
+<script src="~/Scripts/jquery.elevateZoom-3.0.8.min.js"></script>
+<script src="~/Scripts/codex-fly.js"></script>
+<style type="text/css">
+    /* item box start */
+    #spnCart
+{
+    background:green;
+    color:White;
+    padding:5px;
+    border-radius:2px;
+}
+    .col-lg-4 {
+        width: 24% !important;
+    }
+
+    .caption {
+        height: 130px;
+        overflow: hidden;
+    }
+
+        .caption h4 {
+            white-space: nowrap;
+            font-size: 16px;
+        }
+
+    .thumbnail img {
+        width: 70%;
+    }
+
+    .ratings {
+        padding-right: 10px;
+        padding-left: 10px;
+        color: #d17581;
+    }
+
+    .thumbnail {
+        padding: 0;
+    }
+
+        .thumbnail .caption-full {
+            padding: 9px;
+            color: #333;
+        }
+
+        .thumbnail .btn {
+            margin: 0px 30% 10px 25%;
+        }
+    /* item box end */
+
+    /* cart icon */
+    .cart_anchor {
+        float: right;
+        vertical-align: top;
+        background-image: url('../../../../Image/cart-icon.png') ;
+        width: 50px;
+        height: 50px;
+       
+    }
+</style>
+
+
+
+    <div class="divCart">
+      
+            Total Items In Cart : <span id="spnCart">@Session["count"]</span>
+       
+    </div>
+
+<div class="container">
+    @*<div class="row">*@
+        <div class="col-lg-8">
+            <div class="row"><span class="cart_anchor"></span></div>
+        </div>
+        <div class="col-lg-10">
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+
+                        <img id="zoom_01" src="/Image/@Model.Image" height="400" width="400" data-zoom-image="/LargeImage/largeimage.jpg" />
+                      <br />
+                        @*<a href="javascript:void(0);" class="btn btn-success add-to-cart">Add to Cart</a>*@
+
+                        <button class="btn btn-success add-to-cart" style="color:white;" value="@Model.Id" onclick="Add(@Model.Id,@Model.price,'@Model.Image','@Model.Name')"> Add To Cart</button>
+                       
+
+                    </div>
+                </div>
+            <div class="col-lg-4">
+                <div class="caption">
+                    <div class="itemDetails">
+                        <div class="divIName"><b style="color:blue">Product :</b>@Model.Name</div>
+                        <div class="divCat"><b style="color:blue">Category :</b> @Model.Categoryname</div>
+                        <div class="divDesc"><b style="color:blue">Description :</b> @Model.Desc</div>
+                        <div class="divPrice pri"><b style="color:blue">Price :</b> @Model.price</div>
+                        <br />
+                        @Html.ActionLink("Back To Product List", "UserIndex", new { area = "Product", controller = "Product" })
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+    @*</div>*@
+ 
+
+</div>
+<div class="modal" id="exampleModal" tabindex="1000" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+</div>
+
+<script>
+    $("#zoom_01").elevateZoom();
+
+    function Add(itemId,price,image,name) {
+
+        debugger;
+        $.ajax({
+            url: '@Url.Action("AddCart", "Product", new { area = "Product" })',
+            type: "Get",
+            data: { itemId: itemId, price: price,image:image,name:name},
+            success: function (data) {
+                debugger;
+            
+                $('#spnCart').html(data)
+             
+            },
+            error: function (data) {
+
+
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        $('.add-to-cart').on('click',function(){
+            debugger;
+            //Scroll to top if cart icon is hidden on top
+            $('html, body').animate({
+                'scrollTop' : $(".cart_anchor").position().top
+            });
+            //Select item image and pass to the function
+            var itemImg = $(this).parent().find('img').eq(0);
+            flyToElement($(itemImg), $('.cart_anchor'));
+        });
+    });
+    $(document).ready(function () {
+       
+        $('.cart_anchor').on('click', function () {
+            debugger;
+            var getName = $('.divName').html();
+            $.ajax({
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                url: '/Product/Product/GetCartItems',
+
+                success: function (data) {
+                   
+                        $('#exampleModal').html(data);
+                        $('#exampleModal').modal({
+                            backdrop: false
+                        });
+                    
+                },
+                error: function (data) {
+                    alert("No Items Found");
+                }
+            });
+        });
+    });
+    function UpdateQuantity(Id,ele) {
+
+        debugger;
+    
+        var Quantity = $($($(ele).parent().parent().parent()).find('input')).val();
+        $(ele).parent().parent().find('.edit').addClass('show');
+        $(ele).parent().parent().find('.update').addClass('hide');
+       
+        $.ajax({
+            url: '@Url.Action("UpdateQuantity", "Product", new { area = "Product" })',
+            type: "Get",
+            data: { Id: Id, Quantity: Quantity},
+            success: function (data) {
+                debugger;
+               // $('#exampleModal').modal('show');
+                $('.cart_anchor').click();
+                              
+            },
+            error: function (data) {
+                debugger;
+
+            }
+        });
+    }
+
+    function EditQuantity(ele) {
+        debugger;
+        var tr=$(ele).parent().parent().parent()
+        var ins = tr.find('.clsQuantity').find('input');
+        ins.attr('readonly', false);
+        $(ele).parent().parent().find('.update').removeClass('hide');
+        $(ele).addClass('hide');
+      
+    }
+    function Edit(Id) {
+
+        debugger;
+        $.ajax({
+            url: '@Url.Action("DeleteCart", "Product", new { area = "Product" })',
+            type: "Get",
+            data: { Id: Id },
+            success: function (data) {
+
+                $('#spnCart').html(data)
+            },
+            error: function (data) {
+
+
+            }
+        });
+    }
+    function Proceed() {
+
+        debugger;
+        $.ajax({
+            @*url: '@Url.Action("Index", "Address", new { area = "Product" })',*@
+            url: '/Product/Address/Index',
+            type: "POST",
+            success: function (data) {
+                $('#exampleModal').hide();
+
+                window.location.href='@Url.Action("Index", "Address", new { area = "Product" })'
+            },
+            error: function (data) {
+
+
+            }
+        });
+    }
+
+    function Delete(Id) {
+        var Id = Id;
+        var flag = confirm('Are you Sure want to delete this User');
+
+
+        if (flag) {
+            debugger;
+            $.ajax({
+                url: '@Url.Action("DeleteCart", "Product", new { area = "Product" })',
+                type: "POST",
+                data: { Id: Id },
+                success: function (data) {
+                    $('#exampleModal').html(data);
+                    $('#spnCart').html($(data).find('#cartList tbody tr').length);
+                    $('#exampleModal').modal({
+                        backdrop: false
+                    });
+
+                },
+                error: function (data) {
+
+
+                }
+            });
+        }
+    }
+</script>
+
+  <script type="text/javascript">
+
+    if ('@ViewBag.Status' != '') {
+        debugger;
+
+        if ('@ViewBag.Type' != '') {
+            debugger;
+            if ('@ViewBag.Type' == 'success') {
+                debugger;
+                notif({
+                    msg: "<b>@ViewBag.Status",
+                    type: "success"
+                });
+            } else {
+                notif({
+                    msg: "<b>@ViewBag.Status",
+                    type: "error"
+                });
+            }
+        }
+    }
+
+</script> 
+
+

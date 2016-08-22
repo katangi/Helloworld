@@ -1,0 +1,79 @@
+﻿@model ShoppingMvc.Models.State
+
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@using (Html.BeginForm("Create", "State", new { area = "Admin" }, FormMethod.Post))
+{
+    <style type="text/css">
+        .lable {
+            margin-left: 50px;
+        }
+         .myvalidation {
+    color: red;
+        }
+    </style>
+    @Html.AntiForgeryToken()
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+
+                <div class="alert alert-success" role="alert">
+                    @if (Model.Id != 0)
+                    {
+                        <h4 class="modal-title" style="text-align: center">Edit State</h4>
+                    }
+                    else
+                    {
+                        <h4 class="modal-title" style="text-align: center">Add State</h4>
+                    }
+
+
+                </div>
+
+            </div>
+            <div class="modal-body" style="width:500px;height:250px;">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+
+                <form role="form">
+                    <div class="form-group lable">
+                        <label for="recipient-name" class="control-label">Country Name:</label>
+                        @if (Model.Id != 0)
+                        {
+                           
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList((IEnumerable<SelectListItem>)ViewBag.MyList, "Value", "Text"),new { @class = "form-control ", @style = "width: 75%; height:30px;" });
+
+                            <br />
+                                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "myvalidation" })
+                        }
+                        else
+                        {
+                           
+                        @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.CountryName, "Id", "CountryName"), "Select Country Name", new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "myvalidation" })
+                        }
+                    </div>
+                    <div class="form-group lable">
+                        <label for="recipient-name" class="control-label">State Name:</label>
+
+
+                        @Html.TextBoxFor(model => model.StateName, new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.StateName, "", new { @class = "myvalidation" })
+                    </div>
+
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalClose" data-dismiss="modal" class="btn btn-default">Close</button>
+                <button type="submit" class="btn btn-success">Save State</button>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,149 @@
+﻿@model ShoppingMvc.Models.Product
+
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+<script>
+  
+    function ValidateExtension() {
+        debugger;
+        var allowedFiles = [".png", ".jpg", ".jpeg",".gif"];
+        var fileUpload = document.getElementById("file");
+        var lblError = document.getElementById("lblError");
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
+        if (!regex.test(fileUpload.value.toLowerCase())) {
+            lblError.innerHTML = "Please upload image <b>" + allowedFiles.join(', ') + "</b> only.";
+            return false;
+        }
+        lblError.innerHTML = "";
+        return true;
+    }
+
+</script>
+@ViewBag.Message
+@using (Html.BeginForm("Create", "Product", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <style type="text/css">
+        .lable {
+            margin-left: 50px;
+        }
+        .myvalidation {
+            color: red;
+        }
+</style>
+      
+    @Html.AntiForgeryToken()
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+
+                <div class="alert alert-success" role="alert">
+                    @if (Model.Id != 0)
+                    {
+                        <h4 class="modal-title" style="text-align: center">Edit Product</h4>
+                    }
+                    else
+                    {
+                        <h4 class="modal-title" style="text-align: center">Add Product</h4>
+                    }
+
+
+                </div>
+
+            </div>
+            <div class="modal-body" style="width:500px;height:450px;">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id)
+
+                <form id="myform" role="form">
+
+                    <div class="form-group lable" style="margin-bottom:1px">
+                        <label for="recipient-name" class="control-label">Product Name:</label>
+
+
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                       
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "myvalidation" })
+                    </div>
+                    <div class="form-group lable" style="margin-bottom:1px">
+                        <label >Description:</label>
+
+
+                        @Html.TextBoxFor(model => model.Desc, new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                      
+                        @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "myvalidation" })
+                    </div>
+                    <div class="form-group lable" style="margin-bottom:1px">
+                        <label for="recipient-name" class="control-label">Image:</label>
+
+                        @if (Model.Id != 0)
+                        {
+                           
+                         @Html.TextBoxFor(model => model.Image, new { @readonly = "readonly", @class = "form-control ", @style = "width: 75%; height:30px;"  })
+                            <br />
+                            <span id="lblError" style="color: red;"></span>
+                            <input type="file" name="file" id="file" accept="image/jpg,image/png,image/jpeg,image/gif" style="width: 100%;"  />
+                            <br />
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "myvalidation" })
+
+                        }
+                        else
+                        {
+                            @*@Html.TextBoxFor(m => m.Image, new { type = "file" })*@
+                            <span id="lblError" style="color: red;"></span>
+                            <input type="file" name="file" id="file"  accept="image/jpg,image/png,image/jpeg,image/gif"   />
+                                <br />          
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "myvalidation" })
+                        }
+                    </div>
+                    <div class="form-group lable" style="margin-bottom:1px">
+                        <label for="recipient-name" class="control-label">Price:</label>
+
+
+                        @Html.TextBoxFor(model => model.price, new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                       
+                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "myvalidation" })
+                    </div>
+                    <div class="form-group lable" style="margin-bottom:1px">
+                        <label for="recipient-name" class="control-label">Category:</label>
+                        @if (Model.Id != 0)
+                        {
+                            @Html.DropDownListFor(model => model.categoryId, new SelectList(ViewBag.MyList, "Value", "Text", "Selected"), new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                         
+                         
+                            @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "myvalidation" })
+                        }
+                        else
+                        {
+
+                            @Html.DropDownListFor(model => model.categoryId, new SelectList(ViewBag.CategorytName, "Id", "CategoryName"), "Select Category Name", new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                           
+                            @Html.ValidationMessageFor(model => model.categoryId, "", new { @class = "myvalidation" })
+                        }
+                    </div>
+                  
+                    <div class="form-group lable" style="margin-bottom:1px">
+                     
+                        <label for="recipient-name" class="control-label">Quantity:</label>
+                        @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control ", @style = "width: 75%; height:30px;" })
+                      
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "myvalidation" })
+                     
+                    </div>
+
+                </form>
+            </div>
+          
+
+          
+            <div class="modal-footer">
+                <button type="button" id="modalClose" data-dismiss="modal" class="btn btn-default">Close</button>
+                <button type="submit" class="btn btn-success" onclick="return ValidateExtension()">Save Product</button>
+            </div>
+        </div>
+    </div>
+}

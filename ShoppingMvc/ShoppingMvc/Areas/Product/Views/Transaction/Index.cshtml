@@ -1,0 +1,105 @@
+﻿@model ShoppingMvc.Models.Orders
+
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<h2>Card Detail</h2>
+<br />
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+@using (Html.BeginForm("Index", "Transaction", new { area = "Product" }, FormMethod.Post))
+{    @Html.ValidationSummary(true)
+    @*@Html.HiddenFor(model => model.Id)*@
+    <table cellpadding="10">
+
+        <tr>
+            <td>
+                <label for="recipient-name" class="control-label">Credit Card No</label>
+            </td>
+            <td colspan="3">
+                @Html.TextBoxFor(model => model.CreditCardNo)
+                @Html.ValidationMessageFor(m => m.CreditCardNo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="recipient-name" class="control-label">Cvc</label>
+            </td>
+            <td colspan="3">
+                @Html.PasswordFor(model => model.CvcNo)
+                @Html.ValidationMessageFor(m => m.CvcNo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="recipient-name" class="control-label">Expiry Date</label>
+            </td>
+            <td >
+                      
+              @Html.DropDownListFor(model => model.ExpityDate, new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "Jan"  },
+                       new { value = 1 , text = "Feb" },
+                       new { value = 2 , text = "Mar"},
+                       new { value = 2 , text = "Apr"},
+                       new { value = 2 , text = "May"},
+                       new { value = 2 , text = "Jun"},
+                       new { value = 2 , text = "Jul"},
+                       new { value = 2 , text = "Aug"},
+                       new { value = 2 , text = "Sep"},
+                       new { value = 2 , text = "Oct"},
+                        new { value = 2 , text = "Nov"},
+                         new { value = 2 , text = "Dec"}
+                    },
+                  "value",
+                  "text",
+                   2))
+            <td>
+            <td >
+                @Html.DropDownListFor(model => model.ExpityDate, new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "2015"  },
+                       new { value = 1 , text = "2016" },
+                       new { value = 2 , text = "2017"},
+                         new { value = 2 , text = "2018"},
+                           new { value = 2 , text = "2019"},
+                             new { value = 2 , text = "2020"},
+                               new { value = 2 , text = "2021"},
+                                 new { value = 2 , text = "2022"},
+                                   new { value = 2 , text = "2023"}
+                    },
+                  "value",
+                  "text",
+                   2))
+             
+            <td>
+                @*@Html.TextBoxFor(item => item.ExpityDate, new { id = "datepicker" })*@
+                @Html.ValidationMessageFor(m => m.ExpityDate)
+            </td>
+        </tr>
+      
+        <tr>
+            <td></td>
+            <td colspan="3" >
+                <button class="btn btn-small btn-success" style="color:white;" type="submit" value="Submit">Submit</button>
+                @*@Html.ActionLink("Go To Index", "Index", "Customer", new { area = "Customer" }, new { @class = "btn btn-small btn-success" })*@
+                @Html.ActionLink("Cancel", "UserIndex", new { area = "Product", controller = "Product" },new {@class= "btn btn-small btn-success" })
+            </td>
+            <td colspan="2" style="text-align: center"></td>
+        </tr>
+    </table>
+
+}
+<script>
+    var jQuery132 = $.noConflict(true);
+   
+    (function ($) {
+        $("#datepicker").datepicker();
+        defaultDate: new Date(2016,01,01)
+    })(jQuery132);
+</script>

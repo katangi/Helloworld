@@ -1,0 +1,24 @@
+﻿@model ShoppingMvc.Models.User
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h2>MyProfile</h2>
+
+<div class="col-lg-4">
+    <div class="caption">
+        <div class="itemDetails">
+            <div class="divIName"><b style="color:blue">Name :</b>@Model.UserName</div><br />
+            <div class="divCat"><b style="color:blue">Phone No :</b> @Model.PhoneNo</div><br />
+            <div class="divDesc"><b style="color:blue">Email :</b> @Model.Email</div><br />
+            <div class="divPrice pri"><b style="color:blue">Country :</b> @Model.CountryName</div><br />
+            <div class="divPrice pri"><b style="color:blue">State :</b> @Model.StateName</div><br />
+            <div class="divPrice pri"><b style="color:blue">City :</b> @Model.CityName</div><br />
+            <br />
+            @Html.ActionLink("Edit", "UserIndex", new { area = "Product", controller = "Product" },new {@class= "btn btn-success" })
+            @Html.ActionLink("Cancel", "UserIndex", new { area = "Product", controller = "Product" }, new { @class = "btn btn-success" })
+
+        </div>
+    </div>
+</div>

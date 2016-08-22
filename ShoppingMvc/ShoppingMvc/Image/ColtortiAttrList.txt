@@ -1,0 +1,325 @@
+
+{ [ 000001 , {
+  "Description " : " Supercolore "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Orange "
+    " 000003 " , " Beige "
+    " 000004 " , " White " ,
+    " 000005 " , " Blue " ,
+    " 000006 " , " Yellow " ,
+    " 000007 " , " Gray "
+    " 000008 " : " Brown "
+    " 000009 " , " Metal " ,
+    " 000010 " , " Black " ,
+    " 000011 " , " Rosa " ,
+    " 000012 " , " Red " ,
+    " 000013 " , " Green " ,
+    " 000014 " : " Viola "
+  }
+} ] }
+
+
+
+{[000002, {
+  "description": "MOTIVO",
+  "values": {
+    "000001": "Nessuno",
+    "000002": "Animalier",
+    "000003": "Camouflage",
+    "000004": "Check",
+    "000005": "Con stampa",
+    "000006": "Fantasia",
+    "000007": "Gessato",
+    "000008": "Logato/Monogram",
+    "000009": "Pizzo",
+    "000010": "Pois",
+    "000011": "Tinta unita",
+    "000012": "Righe"
+  }
+}]}
+
+
+
+{[000003, {
+  "description": "Supercomposizione",
+  "values": {
+    "000001": "Nessuno",
+    "000002": "Cachemire",
+    "000003": "Cotone",
+    "000004": "Ecopelle",
+    "000005": "Lana",
+    "000006": "Lino",
+    "000007": "Pelle",
+    "000008": "Pelliccia",
+    "000009": "Pelliccia ecologica",
+    "000010": "Seta",
+    "000011": "Sintetico",
+    "000012": "Tecnico",
+    "000013": "Denim"
+  }
+}]}
+
+{ [ 000006 , {
+  "Description " : " Type Exchange Woman "
+  " Values" : {
+    " 000001 " : " Handbags "
+    " 000002 " : " Shoulder bags "
+    " 000003 " : " Straps "
+    " 000004 " : " With additional shoulder strap "
+    " 000005 " , "No " ,
+    " 000006 " , " Mini Bag"
+  }
+} ] }
+
+{[000007, {
+  "description": "Tipologia Borsa Uomo",
+  "values": {
+    "000001": "Nessuno",
+    "000002": "Borsone",
+    "000003": "Cartella",
+    "000004": "Trolley",
+    "000005": "Con tracolla aggiuntiva"
+  }
+}]}
+
+
+{ [ 000013 {
+  "Description " : " Type Female Accessories "
+  " Values" : {
+    " 000001 " : " Rings "
+    " 000002 " , " Bracelets "
+    " 000003 " : "Hats "
+    " 000004 " : " Necklaces "
+    " 000005 " : " Scarves "
+    " 000006 " : " Gloves "
+    " 000007 " : " Necessaire "
+    " 000008 " : " Earrings "
+    " 000009 " , " credit card holder "
+    " 000010 " : " Key Chains "
+    " 000011 " : "Scarves "
+    " 000012 " : " Brooches "
+    " 000013 " : " Stole "
+    " 000014 " , "No "
+  }
+} ] }
+
+
+
+{ [ 000014 {
+  "Description " : " Type Men's Accessories "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Rings "
+    " 000003 " , " Bracelets "
+    " 000004 " : "Hats "
+    " 000005 " : " Necklaces "
+    " 000006 " : " Ties "
+    " 000007 " : " Tie "
+    " 000008 " , " Gemini "
+    " 000009 " : " Gloves "
+    " 000010 " : " Necessaire "
+    " 000011 " , " Papillon "
+    " 000012 " , " clutch "
+    " 000013 " , " credit card holder "
+    " 000014 " : " Key Chains "
+    " 000015 " : "Scarves "
+  }
+} ] }
+
+
+{ [ 000023 {
+  "Description " : " Type Women Shoes "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Fasten "
+    " 000003 " : " Amphibians "
+    " 000004 " : " Ankle boots "
+    " 000005 " , " Dancers "
+    " 000006 " : " Bikers "
+    " 000007 " : " Slippers "
+    " 000008 " , " Driver " ,
+    " 000009 " : " Loafers "
+    " 000010 " : " Rainboots "
+    " 000011 " : " Sandals "
+    " 000012 " , " Slipper "
+    " 000013 " : " Boots "
+    " 000014 " : "Welded "
+  }
+} ] }
+
+{ [ 000024 , {
+  "Description " : " Type Men's Shoes "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Fasten "
+    " 000003 " : " Amphibians "
+    " 000004 " , " Beatle boots "
+    " 000005 " : " Bikers "
+    " 000006 " : " Slippers "
+    " 000007 " , " Driver " ,
+    " 000008 " : " Loafers "
+    " 000009 " : " Rainboots "
+    " 000010 " : " Sandals "
+    " 000011 " , " Slipper "
+    " 000012 " : " Boots "
+  }
+} ] }
+
+
+
+{ [ 000025 , {
+  "Description " : " Type Heel Woman "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " High"
+    " 000003 " , " Middle "
+    " 000004 " , " Low" ,
+    " 000005 " : " Low shot "
+    " 000006 " , " Largo "
+    " 000007 " , " Stiletto "
+    " 000008 " , " wedge "
+  }
+} ] }
+
+
+{ [ 000026 {
+  "Description " : " Sole Type "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " leather "
+    " 000003 " , " Rubber "
+  }
+} ] }
+
+
+{ [ 000027 {
+  "Description " : " Type Punta Woman "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Pointed "
+    " 000003 " , " Tonda "
+    " 000004 " : " Squared "
+    " 000005 " , " Open "
+  }
+} ] }
+
+{ [ 000028 , {
+  "Description " : " Type Punta Man ??"
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Pointed "
+    " 000003 " , " Tonda "
+    " 000004 " : " Squared "
+  }
+} ] }
+
+{ [ 000029 , {
+  "Description " : " Fit Clothes "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Long " ,
+    " 000003 " : " Knee "
+    " 000004 " , " Short "
+    " 000005 " : " Sleeveless "
+    " 000006 " : " Short Sleeves "
+    " 000007 " : " Long sleeves "
+    " 000008 " : " Strapless "
+    " 000009 " , " Shoulder "
+  }
+} ] }
+
+
+
+{ [ 000030 {
+  "Description " : " Fit & Tees "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Long sleeves "
+    " 000003 " , " short sleeve "
+    " 000004 " , " Channel 3/4 "
+    " 000005 " : " Without sleeve "
+    " 000006 " , " high / Turtleneck Neck "
+    " 000007 " : " Choker "
+    " 000008 " , " V-neck "
+    " 000009 " : " Strapless "
+    " 000010 " , " Shoulder "
+  }
+} ] }
+
+{ [ 000031 , {
+  "Description " : " Fit Skirts "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Short "
+    " 000003 " , " Midi "
+    " 000004 " , " Long "
+  }
+} ] }
+
+
+{ [ 000032 , {
+  "Description " : " Fit Pants & Jeans "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Boyfriends "
+    " 000003 " : "Flare "
+    " 000004 " : "Loose "
+    " 000005 " : " Regular "
+    " 000006 " : " Slim "
+    " 000007 " : " Skinny "
+    " 000008 " : " High Life "
+    " 000009 " , " Low Life "
+    " 000010 " : " Average life "
+  }
+} ] }
+
+
+{ [ 000033 , {
+  "Description " : " Fit Men's Shirts "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Slim "
+    " 000003 " : " Regular"
+  }
+} ] }
+
+{ [ 000034 {
+  "Description " : " Fit Woman Shirts "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Long sleeves "
+    " 000003 " , " short sleeve "
+    " 000004 " , " Channel 3/4 "
+    " 000005 " : " Without sleeve "
+    " 000006 " : " Choker "
+    " 000007 " , " V-neck "
+  }
+} ] }
+
+{ [ 000035 {
+  "Description " : " Fit Jackets "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " : " Single-breasted "
+    " 000003 " , " Double Breasted "
+    " 000004 " : " Slim "
+    " 000005 " : " Regular"
+  }
+} ] }
+
+
+{ [ 000036 {
+  "Description " : " Fit Outerwear "
+  " Values" : {
+    " 000001 " , "No " ,
+    " 000002 " , " Short "
+    " 000003 " , " Midi "
+    " 000004 " , " Long " ,
+    " 000005 " : " Slim "
+    " 000006 " : " Regular "
+    " 000007 " : " Oversize "
+    " 000008 " : " Single-breasted "
+    " 000009 " , " Double Breasted "
+  }
+} ] }

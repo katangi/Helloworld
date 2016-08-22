@@ -1,0 +1,71 @@
+﻿ @model IEnumerable<ShoppingMvc.Models.OrderDetails>
+
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+                Your Cart
+            </h4>
+        </div>
+        <div class="modal-body">
+            <table id="cartList">
+                <thead>
+                    <tr>
+                        <td ><b>Image</b></td>
+                        <td ><b>Name</b></td>
+                        <td ><b>Price</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                </thead>
+<tbody>
+
+                    @foreach (var objItem in Model)
+                    {
+                     
+                        <tr id="@objItem.ProductId",Id="@objItem.Id" >
+                            <td>
+                                <img src="~/Image/@objItem.Image" height="60" width="60" />
+                              
+                            </td>
+                           <td  >
+                               @objItem.ProductName
+                           </td>
+                           
+                            <td style="width:15%">
+                                @objItem.Price
+                            </td>
+                            <td class="clsQuantity" >
+                                <div>
+                                    <input type="text" name="text" class="inputid" value="@objItem.Quantity" readonly style="width: 30px;" />
+                                </div>
+                            </td>
+                            <td style="width:10%" >
+                                <div class="child"><button class="btn btn-small btn-success" style="color:white;" value="@objItem.ProductId" onclick="Delete(@objItem.ProductId)">Remove</button></div>
+                            </td>   
+                            <td >
+                                <div class="child"><button class="btn btn-small btn-success edit" style="color:white;" id="btnEdit" onclick="EditQuantity(this)">Edit</button></div>
+                                <div class="child" id="post-detailsxxx"><button class="btn btn-small btn-success update hide" style="color:white;" value="@objItem.ProductId" onclick="UpdateQuantity(@objItem.ProductId,this)">Update</button></div>
+                            </td>
+  
+               
+                        </tr>
+                    }
+                </tbody>            
+               
+            </table>
+            <span class="totalPrice"><b>Total Amount @ViewBag.Total</b></span>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+                Close
+            </button>
+            <button class="btn btn-small btn-success" style="color:white;"  onclick="Proceed()">Proceed</button>
+        </div>
+    </div>
+</div>

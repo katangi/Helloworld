@@ -1,0 +1,157 @@
+﻿@model ShoppingMvc.Models.User
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registration</h2>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<style>
+    .myvalidation {
+        color: red;
+    }
+</style>
+
+@if (ViewBag.Success != null)
+{
+    <h4 style="color:red">@ViewBag.Success</h4>
+}
+<div class="container-fluid">
+
+    <div class="divcustomer">
+        @Html.HiddenFor(model => model.Id)
+        @using (Html.BeginForm("Create", "User", new { area = "User" }, FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
+            <form id="form_add">
+                <table cellpadding="10">
+
+                    <tr>
+                        <td>
+                            <label for="recipient-name" class="control-label">User Name</label>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.UserName)
+                            <br />
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.PhoneNo)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.PhoneNo)
+                            <br />
+                            @Html.ValidationMessageFor(m => m.PhoneNo, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Email)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Email)
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Password)
+                        </td>
+                        <td>
+                            @Html.PasswordFor(model => model.Password)
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <label for="recipient-name" class="control-label">Country</label>
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(ViewBag.CountryName, "Id", "CountryName"),"Select a Country", new {id="Country",@style= "width: 80%; height:30px;" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="recipient-name" class="control-label">State</label>
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.StateId,new SelectList("",""), new { id = "State",name= "state", @style = "width: 80%; height:30px;" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="recipient-name" class="control-label">City</label>
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.CityId, new SelectList("", ""), new { id = "city", name = "City", @style = "width: 80%; height:30px;" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "myvalidation" })
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <button class="btn btn-small btn-success" style="color:white;" type="submit" value="Submit">Submit</button>
+                            <button class="btn btn-small btn-success" style="color:white;" type="submit" onclick="Reset()" value="Submit">Reset</button>
+                        </td>
+                        <td colspan="2" style="text-align: center"></td>
+                    </tr>
+                </table>
+            </form>
+        }
+       
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/jscript">
+
+    function Reset() {
+
+        debugger;
+    
+      
+        $(".field-validation-error").remove();
+        window.location.reload();
+}
+
+
+    $(function () {
+        $('#Country').change(function () {
+            debugger;
+            $.getJSON('/User/User/StateList/' + $('#Country').val(), function (data) {
+                debugger;
+                var items = '<option>Select a State</option>';
+                $.each(data, function (i, state) {
+                    debugger;
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                });
+                $('#State').html(items);
+            });
+        });
+
+        $('#State').change(function () {
+            $.getJSON('/User/User/Citylist/' + $('#State').val(), function (data) {
+                var items = '<option>Select a City</option>';
+                $.each(data, function (i, city) {
+                    items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                });
+                $('#city').html(items);
+            });
+        });
+    });
+</script>
+

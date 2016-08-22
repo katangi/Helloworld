@@ -1,0 +1,5 @@
+E:\ShoppingMvc\ShoppingMvc\ShoppingModels\bin\Debug\ShoppingModels.dll
+E:\ShoppingMvc\ShoppingMvc\ShoppingModels\bin\Debug\ShoppingModels.pdb
+E:\ShoppingMvc\ShoppingMvc\ShoppingModels\obj\Debug\ShoppingModels.csprojResolveAssemblyReference.cache
+E:\ShoppingMvc\ShoppingMvc\ShoppingModels\obj\Debug\ShoppingModels.dll
+E:\ShoppingMvc\ShoppingMvc\ShoppingModels\obj\Debug\ShoppingModels.pdb

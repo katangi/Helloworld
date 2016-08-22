@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ShoppingMvc.Models.Address>
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@*<link href="~/Content/demo_style.css" rel="stylesheet" />
+<link href="~/Content/smart_wizard.css" rel="stylesheet" />
+<link href="~/Content/smart_wizard_vertical.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="~/js/jquery-2.0.0.min.js"></script>*@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+   
+  
+<div class="container">
+    <h3> Total Order : @ViewBag.sum</h3>
+
+    <br />
+   
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Product Order</a></li>
+        <li><a data-toggle="tab" href="#menu1">Address</a></li>
+      
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+           <h3>Product</h3>
+                 
+                 
+                            @foreach (var item in ViewBag.MyList)
+                            {   <div class="col-sm-2">
+
+                <div>Name :@item.ProductName</div>
+               
+                <div>Quantity:@item.Quantity</div>
+                    <div><b>Price :@item.Price</b></div><br />
+            </div>
+                            }
+         
+            <div class="col-lg-12">@Html.ActionLink("Cancel", "UserIndex", new { area = "Product", controller = "Product" }, new { @class = "btn btn-info btn" })</div>                                              
+           
+        </div>
+      
+
+        <div id="menu1" class="tab-pane fade">
+            <h3>Address</h3>
+            <div class="col-lg-12">@Html.ActionLink("Add Address", "MyAddress", new { area = "Product", controller = "Address" }, new { @class = "btn btn-info btn" })</div>                                              
+            @{ int index = 0;
+                foreach (var objproduct in Model)
+
+                {
+                    
+                      <div class="col-lg-3">
+                          <div>
+                              <label class="radio-inline"><input type="radio" value="@index" class="radio" onclick="radiobutton(@index) " name="optradio"></label>
+                          </div>
+                              <br />
+                              <div class="divName@(index)">
+                                  <div>@objproduct.Id</div>
+                                  <div>
+                                      City : @objproduct.City
+                                  </div>
+                                  <div>Address: @objproduct.userAddress</div>
+                                  <div>Address Type: @objproduct.Addresstype</div>
+
+
+                              </div><br />
+                          
+                    <button class="btn btn-info btn edit hide" id="btn" style="color:white;" onclick="Proceed()">
+                        Proceed
+                    </button>
+                </div><br />
+           
+
+                    index = index + 1;
+
+                }
+
+                }
+           
+        </div>
+
+    </div>
+</div>
+    <script>
+
+
+
+        function Proceed() {
+            debugger;
+            $.ajax({
+                // url: '@Url.Action("ProceedDetail", "Address", new { area = "Product" })',
+                url: '/Product/Address/ProceedDetail',
+                type: "Post",
+
+                success: function (data) {
+
+                    window.location.href = '@Url.Action("Index", "Transaction", new { area = "Product" })'
+                },
+                error: function (data) {
+
+
+                }
+            });
+        }
+        $(document).ready(function () {
+            $(".radio").click(function () {
+                debugger;
+                $('#btn').removeClass('hide');
+                
+                $('#btn').show('fast');
+               
+                var t = ($("input[type=radio]:checked").val());
+                if (t) {
+                    var getName = $('.divName'+t).html();
+                 
+                }
+               
+        
+                
+            });
+        });
+       
+           
+    </script>
+
+ 
