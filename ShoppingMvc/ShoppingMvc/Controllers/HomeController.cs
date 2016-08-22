@@ -22,6 +22,9 @@ namespace ShoppingMvc.Controllers
 
         {
             var ab = 0;
+            var bc = 0;
+            var cd = 0;
+            cd = ab + bc;
             ViewBag.Message = "my name is prerna";
 
             return View();
